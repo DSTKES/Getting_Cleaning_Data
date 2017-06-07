@@ -35,3 +35,4 @@ h5write(c(12,13,14),"example.h5","foo/A",index=list(1:3,1))
 h5read("example.h5","foo/A")
 h5read("example.h5","foo/A",index=list(1:3,1))  #read on first 3 rows of col 1
 
+file.remove("example.h5")  #drop file from code directory
