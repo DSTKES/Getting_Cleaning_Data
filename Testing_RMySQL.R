@@ -7,7 +7,7 @@ ucscDb <- dbConnect(MySQL(), user="genome",
 
 Result <- dbGetQuery(ucscDb, "show databases;"); dbDisconnect(ucscDb)
 
-Result[1:10,]
+Result[1:10,]  #show the first 10 listings -- includes object class?
 
 
 # Connect to hg19 and listing tables
@@ -16,3 +16,15 @@ hg19 <- dbConnect(MySQL(), user="genome", db="hg19",
 allTables <- dbListTables(hg19)
 length(allTables)
 allTables[1:5]
+
+dbListFields(hg19, "affyU133Plus2")
+dbGetQuery(hg19, "select count(*) from affyU133Plus2")
+affyData <- dbReadTable(hg19, "affyU133Plus2")
+head(affyData)
+
+# create query
+query <- dbSendQuery(hg19, "select * from affyU133Plus2 where misMatches between 1 and 3")
+affyMis <- fetch(query); quantile(affyMis$misMatches)
+affyMisSmall <- fetch(query, n=10); dbClearResult(query);
+dim(affyMisSmall)
+dbDisconnect(hg19)

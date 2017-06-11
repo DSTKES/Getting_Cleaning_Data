@@ -9,10 +9,10 @@ htmlCode
 
 # Can use XML packagwe to parse html
 library(XML)
-# url <- ..
-# html 
+# url <- 
+# html <- htmlTreeParse(url, )
 
-# Anoter option -- Use GET from httr package
+# Another option -- Use GET from httr package
 library(httr); html2 = GET(url)
 content2 = content(html2,as="text") #extract content as text
 parsedHtml = htmlParse(content2,asText = TRUE)

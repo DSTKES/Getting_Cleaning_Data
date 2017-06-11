@@ -1,7 +1,7 @@
 # Testing HDF5 along with lecture
 
-# source("http://bioconductor.org/biocLite.R")
-
+source("http://bioconductor.org/biocLite.R")
+biocLite("rhdf5")
 library(rhdf5)
 created = h5createFile("example.h5")
 created
